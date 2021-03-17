@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.moon.starter.controller.ArticleController;
 import com.moon.starter.dao.ArticleDao;
 import com.moon.starter.dto.Article;
+import com.moon.starter.util.CUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,9 +31,9 @@ public class ArticleServiceImpl implements ArticleService {
 		articleDao.add(param);
 		
 //		log.info("newId : " + param.get("id"));
-		BigInteger bigIntId = (BigInteger)param.get("id");
-		long newId = bigIntId.longValue();
+//		BigInteger bigIntId = (BigInteger)param.get("id");
+//		long newId = bigIntId.longValue();
 		
-		return newId;
+		return CUtil.getAsLong(param.get("id"));
 	}
 }
