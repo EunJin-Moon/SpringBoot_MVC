@@ -24,9 +24,15 @@ public class ArticleController {
 
 		log.info("list : " + list);
 
-		model.addAttribute("list",list);
-		//request.setAttribute("list",list);와 똑같은 표현 
-		
+		model.addAttribute("list", list);
+		// request.setAttribute("list",list);와 똑같은 표현
+
 		return "article/list";
 	}
+
+	@RequestMapping("/article/add")
+	public String showAdd() {
+		return "article/add";
+	}
+
 }
