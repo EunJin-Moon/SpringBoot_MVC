@@ -3,7 +3,17 @@
 
 <mapper namespace="com.moon.starter.dao.ArticleDao">
 	<select id="getList" parameterType="map" resultType="Article">
-		SELECT * FROM
-		article
+		SELECT * FROM article ORDER BY id DESE
 	</select>
+	
+	<insert id="add" parameterType="map">
+		INSERT INTO article
+		Set regDate = NOW(),
+		title = #{title},
+		body = #{body}
+		
+	</insert>
+	
+	
 </mapper>
+
