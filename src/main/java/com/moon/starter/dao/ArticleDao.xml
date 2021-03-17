@@ -6,7 +6,7 @@
 		SELECT * FROM article ORDER BY id DESE
 	</select>
 	
-	<insert id="add" parameterType="map">
+	<insert id="add" parameterType="map" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO article
 		Set regDate = NOW(),
 		title = #{title},
