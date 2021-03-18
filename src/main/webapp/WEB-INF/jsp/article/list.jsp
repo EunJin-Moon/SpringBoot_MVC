@@ -16,7 +16,10 @@
 
 	<div class="con">
 		<c:forEach items="${list}" var="article">
-			<section>锅龋 : ${article.id}, 力格 : ${article.title}</section>
+			<section>
+				<a href="./detail?id=${article.id}">锅龋 : ${article.id}</a>
+				 力格 : ${article.title}
+			</section>
 			<hr>
 		</c:forEach>
 	</div>
