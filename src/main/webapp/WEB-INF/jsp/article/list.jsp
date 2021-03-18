@@ -12,6 +12,7 @@
 <body>
 	<h2>게시물 리스트 출력</h2>
 <!-- el의 장점은 request.getAttribute("article")) 할 필요가 없다. -->
+	<h2>전체 게시물 개수 : ${totalCount}</h2>
 	<c:forEach items="${list}" var="article">
 		<section>
 			번호 : ${article.id},
