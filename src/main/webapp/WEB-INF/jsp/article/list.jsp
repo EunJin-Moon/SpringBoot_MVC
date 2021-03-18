@@ -1,33 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Ä¿¹Â´ÏÆ¼ »çÀÌÆ® - °Ô½Ã¹° ¸®½ºÆ®</title>
-<link rel="stylesheet" href="/resource/common.css">
-</head>
-<body>
-	<h1 class="con">°Ô½Ã¹° ¸®½ºÆ®</h1>
-	<h2 class="con">ÀüÃ¼ °Ô½Ã¹° °³¼ö : ${totalCount}</h2>
+<c:set var="pageName" value="ê²Œì‹œë¬¼ ë¦¬ìŠ¤íŠ¸" />
+<%@ include file="../part/head.jspf"%>
+<h2 class="con">ì „ì²´ ê²Œì‹œë¬¼ ê°œìˆ˜ : ${totalCount}</h2>
 
-	<div class="con">
-		<c:forEach items="${list}" var="article">
-			<section>
-				<a href="./detail?id=${article.id}">¹øÈ£ : ${article.id}</a>
-				 Á¦¸ñ : ${article.title}
-			</section>
-			<hr>
-		</c:forEach>
-	</div>
+<div class="con">
+	<c:forEach items="${list}" var="article">
+		<section>
+			<a href="./detail?id=${article.id}">ë²ˆí˜¸ : ${article.id}</a> ì œëª© :
+			${article.title}
+		</section>
+		<hr>
+	</c:forEach>
+</div>
 
-	<div class="btns con">
-		<a href="./add">°Ô½Ã¹° Ãß°¡ </a>
-	</div>
+<div class="btns con">
+	<a href="./add">ê²Œì‹œë¬¼ ì¶”ê°€ </a>
+</div>
 
-
-</body>
-</html>
+<%@ include file="../part/foot.jspf"%>
