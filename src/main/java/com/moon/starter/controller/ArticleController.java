@@ -37,6 +37,19 @@ public class ArticleController {
 	public String showAdd() {
 		return "article/add";
 	}
+	
+	
+	@RequestMapping("/article/detail")
+	public String showDetail(Model model,long id) {
+		
+		Article article = articleService.getOne(id);
+		
+		model.addAttribute("article", article);
+		
+		return "article/detail";
+	}
+	
+	
 
 	@RequestMapping("/article/doAdd")
 	@ResponseBody
