@@ -19,6 +19,8 @@ public interface ArticleService {
 	
 	public void delete(long id);
 
+	public void hitUp(long id);
+
 	
 	
 }
