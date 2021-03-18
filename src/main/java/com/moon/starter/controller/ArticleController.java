@@ -40,10 +40,20 @@ public class ArticleController {
 
 	@RequestMapping("/article/doAdd")
 	@ResponseBody
-	public String doAdd(@RequestParam Map<String,Object>param) {
+	public String doAdd(@RequestParam Map<String, Object> param) {
+
+		long newId = articleService.add(param);
+
+		String msg = newId + "번 게시물이 추가되었습니다";
 		
-		long newID = articleService.add(param);
+		StringBuilder sb = new StringBuilder();
 		
-		return newID+"번 게시물이 추가되었습니다";
+		sb.append("alert('"+msg+"')");
+		sb.append("location.replace('./detail?id="+newId+"');");
+		
+		sb.insert(0,"<script>");
+		sb.append("</script>");
+		
+		return sb.toString();
 	}
 }
