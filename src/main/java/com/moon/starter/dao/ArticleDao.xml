@@ -23,6 +23,17 @@
 	</select>
 	
 	
+	<update id="modify" parameterType="map">
+		UPDATE article
+		Set 
+		title = #{title},
+		body = #{body}
+		WHERE id = #{id}
+		
+	</update>
+	
+	
+	
 	<delete id="delete" parameterType="long">
 		DELETE FROM article
 		WHERE id = #{id}

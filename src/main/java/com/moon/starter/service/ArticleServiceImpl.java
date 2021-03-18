@@ -29,11 +29,11 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public long add(Map<String, Object> param) {
 		articleDao.add(param);
-		
+
 //		log.info("newId : " + param.get("id"));
 //		BigInteger bigIntId = (BigInteger)param.get("id");
 //		long newId = bigIntId.longValue();
-		
+
 		return CUtil.getAsLong(param.get("id"));
 	}
 
@@ -48,7 +48,14 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	public void modify(Map<String, Object> param) {
+		articleDao.modify(param);
+
+	}
+
+	@Override
 	public void delete(long id) {
 		articleDao.delete(id);
 	}
+
 }
