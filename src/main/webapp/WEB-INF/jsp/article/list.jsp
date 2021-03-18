@@ -8,6 +8,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>커뮤니티 사이트 - 게시물 리스트</title>
+<link rel="stylesheet" href="/resource/common.css">
 </head>
 <body>
 	<h2>게시물 리스트 출력</h2>

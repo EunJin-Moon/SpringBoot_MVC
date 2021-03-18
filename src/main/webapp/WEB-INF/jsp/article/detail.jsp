@@ -8,34 +8,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>커뮤니티 사이트 - 게시물 상세페이지</title>
-<style>
-.con {
-	width: 1000px;
-	margin: 0 auto;
-}
-
-.common-form>div>* {
-	float: left;
-}
-
-.common-form>div::after {
-	content: "";
-	display: block;
-	clear: both;
-}
-
-.common-form>div>span {
-	width: 50px;
-}
-
-.common-form>div>div {
-	width: calc(100% - 50px);
-}
-
-.common-form>div>div>input[type="text"], .common-form>div>div>textarea {
-	width: 90%;
-}
-</style>
+<link rel="stylesheet" href="/resource/common.css">
 </head>
 <body>
 	<h1>게시물 상세페이지</h1>
