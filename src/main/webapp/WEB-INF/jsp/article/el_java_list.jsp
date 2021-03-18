@@ -36,7 +36,7 @@ List<Article> list = (List<Article>) request.getAttribute("list");
 	}
 	%>
 	<h1>v2</h1>
-	
+	<!-- el의 장점은 request.getAttribute("article")) 할 필요가 없다. -->
 	<c:forEach items="${list}" var="article">
 		<section>
 			번호 : ${article.id},
