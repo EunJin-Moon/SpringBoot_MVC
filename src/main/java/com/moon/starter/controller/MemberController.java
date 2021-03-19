@@ -2,6 +2,8 @@ package com.moon.starter.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.moon.starter.dto.Member;
 import com.moon.starter.service.MemberService;
 
 @Controller
@@ -16,40 +19,67 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
-	
-	
+
 	@RequestMapping("/member/join")
 	public String memberJoin() {
-		
+
 		return "member/join";
 	}
 	
-	@RequestMapping("/member/doJoin")
-	@ResponseBody
-	public String doJoin(@RequestParam Map<String,Object>param, Model model) {
-		
-		//로그인 ID의 중복성 체크 
-		Map<String, Object>checkLoginIdDupRs = memberService.checkLoginIdDup((String)param.get("loginId"));
-		
-		if(((String)checkLoginIdDupRs.get("resultCode")).startsWith("F-")) {
-			model.addAttribute("alertMsg", checkLoginIdDupRs.get("msg"));
-			model.addAttribute("historyBack",true);
-			
+	@RequestMapping("/member/login")
+	public String memberLogin() {
+
+		return "member/login";
+	}
+
+	@RequestMapping("/member/doLogout")
+	public String doLogout(HttpSession session) {
+		session.removeAttribute("loginedMemberId");
+		return "redirect:/";
+	}
+
+	@RequestMapping("/member/doLogin")
+	public String doLogin(@RequestParam Map<String, Object> param, Model model, HttpSession session) {
+
+		Member matchedMember = memberService.getMatchedOne((String) param.get("loginId"),
+				(String) param.get("loginPw"));
+
+		if (matchedMember == null) {
+			model.addAttribute("alertMsg", "일치하는 회원이 존재하지 않습니다.");
+			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		Map<String, Object>joinRs = memberService.join(param);
-		
-		if(((String)joinRs.get("resultCode")).startsWith("F-")) {
+		session.setAttribute("loginedMemberId", matchedMember.getId());
+		model.addAttribute("alertMsg", "로그인되었습니다.");
+		model.addAttribute("redirectUrl", "/");
+
+		return "common/redirect";
+	}
+
+	@RequestMapping("/member/doJoin")
+	@ResponseBody
+	public String doJoin(@RequestParam Map<String, Object> param, Model model) {
+
+		// 로그인 ID의 중복성 체크
+		Map<String, Object> checkLoginIdDupRs = memberService.checkLoginIdDup((String) param.get("loginId"));
+
+		if (((String) checkLoginIdDupRs.get("resultCode")).startsWith("F-")) {
+			model.addAttribute("alertMsg", checkLoginIdDupRs.get("msg"));
+			model.addAttribute("historyBack", true);
+
+			return "common/redirect";
+		}
+		Map<String, Object> joinRs = memberService.join(param);
+
+		if (((String) joinRs.get("resultCode")).startsWith("F-")) {
 			model.addAttribute("alertMsg", joinRs.get("msg"));
-			model.addAttribute("historyBack",true);
-			
+			model.addAttribute("historyBack", true);
+
 			return "common/redirect";
 		}
 		model.addAttribute("alertMsg", joinRs.get("msg"));
-		model.addAttribute("redirectUrl","/member/login");
-		
-	
-		
+		model.addAttribute("redirectUrl", "/member/login");
+
 		return "common/redirect";
 	}
 

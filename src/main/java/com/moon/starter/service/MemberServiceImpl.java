@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moon.starter.dao.MemberDao;
+import com.moon.starter.dto.Member;
 import com.moon.starter.util.CUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -63,6 +64,16 @@ public class MemberServiceImpl implements MemberService {
 		rs.put("newId", newId);
 
 		return rs;
+	}
+
+	@Override
+	public Member getMatchedOne(String loginId, String loginPw) {
+		return memberDao.getMatchedOne(loginId,loginPw);
+	}
+
+	@Override
+	public Member getOne(long loginedMemberId) {
+		return memberDao.getOne(loginedMemberId);
 	}
 
 }
